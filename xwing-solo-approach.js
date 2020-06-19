@@ -784,11 +784,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.L.z === region.S.z)
+	if (region.N.A === region.S.A)
 	{
-		return 'on line ' + region.L.z;
+		return 'on line ' + region.N.A;
 	}
-	return 'on lines ' + region.L.z + ' through ' + region.S.z;
+	return 'on lines ' + region.N.A + ' through ' + region.S.A;
 }
 
 
@@ -2705,8 +2705,8 @@ var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
 		o: func(record.o),
-		M: record.M,
-		J: record.J
+		O: record.O,
+		L: record.L
 	}
 });
 
@@ -2975,10 +2975,10 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 
 		var value = result.a;
 		var message = !tag ? value : tag < 3 ? value.a : value.o;
-		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.M;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.O;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
-			(tag == 2 ? value.b : tag == 3 && value.J) && event.preventDefault(),
+			(tag == 2 ? value.b : tag == 3 && value.L) && event.preventDefault(),
 			eventNode
 		);
 		var tagger;
@@ -3968,7 +3968,7 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 		impl.aG,
 		impl.aE,
 		function(sendToApp, initialModel) {
-			var divertHrefToApp = impl.K && impl.K(sendToApp)
+			var divertHrefToApp = impl.M && impl.M(sendToApp)
 			var view = impl.aH;
 			var title = _VirtualDom_doc.title;
 			var bodyNode = _VirtualDom_doc.body;
@@ -4043,7 +4043,7 @@ function _Browser_application(impl)
 	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
 
 	return _Browser_document({
-		K: function(sendToApp)
+		M: function(sendToApp)
 		{
 			key.a = sendToApp;
 			_Browser_window.addEventListener('popstate', key);
@@ -5144,7 +5144,7 @@ var $elm$core$Task$perform = F2(
 var $elm$browser$Browser$element = _Browser_element;
 var $author$project$Main$Model = F5(
 	function (arc, defense, attack, attitude, approach) {
-		return {O: approach, F: arc, G: attack, P: attitude, E: defense};
+		return {H: approach, F: arc, G: attack, I: attitude, z: defense};
 	});
 var $author$project$Main$emptyModel = A5($author$project$Main$Model, $elm$core$Maybe$Nothing, $elm$core$Maybe$Nothing, $elm$core$Maybe$Nothing, $elm$core$Maybe$Nothing, $elm$core$Maybe$Nothing);
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
@@ -5489,8 +5489,8 @@ var $author$project$Main$result = function (m) {
 	return _Utils_update(
 		m,
 		{
-			O: A4($elm$core$Maybe$map3, $author$project$Main$fromApproachChart, m.F, m.E, m.G),
-			P: A2($elm$core$Maybe$map, toAttitude, m.E)
+			H: A4($elm$core$Maybe$map3, $author$project$Main$fromApproachChart, m.F, m.z, m.G),
+			I: A2($elm$core$Maybe$map, toAttitude, m.z)
 		});
 };
 var $author$project$Main$update = F2(
@@ -5511,7 +5511,7 @@ var $author$project$Main$update = F2(
 					return _Utils_update(
 						model,
 						{
-							E: $elm$core$Maybe$Just(d)
+							z: $elm$core$Maybe$Just(d)
 						});
 				default:
 					var a = message.a;
@@ -5526,10 +5526,69 @@ var $author$project$Main$update = F2(
 			$author$project$Main$result(newModel),
 			$elm$core$Platform$Cmd$none);
 	});
+var $author$project$Main$ABlank = 3;
+var $author$project$Main$AFocus = 2;
+var $author$project$Main$Arc = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$Main$Attack = function (a) {
+	return {$: 2, a: a};
+};
+var $author$project$Main$Bullseye = 0;
+var $author$project$Main$Crit = 1;
+var $author$project$Main$DBlank = 2;
+var $author$project$Main$DFocus = 1;
+var $author$project$Main$Defense = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$Main$Evade = 0;
+var $author$project$Main$Front = 1;
+var $author$project$Main$Hit = 0;
+var $author$project$Main$Rear = 3;
 var $author$project$Main$Reset = {$: 3};
+var $author$project$Main$Side = 2;
 var $elm$html$Html$br = _VirtualDom_node('br');
 var $elm$html$Html$button = _VirtualDom_node('button');
+var $elm$json$Json$Encode$bool = _Json_wrap;
+var $elm$html$Html$Attributes$boolProperty = F2(
+	function (key, bool) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$bool(bool));
+	});
+var $elm$html$Html$Attributes$checked = $elm$html$Html$Attributes$boolProperty('checked');
 var $elm$html$Html$div = _VirtualDom_node('div');
+var $elm$html$Html$input = _VirtualDom_node('input');
+var $elm$html$Html$label = _VirtualDom_node('label');
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (!maybe.$) {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$Main$maybeEquals = F2(
+	function (desired, actual) {
+		return A2(
+			$elm$core$Maybe$withDefault,
+			false,
+			A2(
+				$elm$core$Maybe$map,
+				$elm$core$Basics$eq(desired),
+				actual));
+	});
+var $elm$json$Json$Encode$string = _Json_wrap;
+var $elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$string(string));
+	});
+var $elm$html$Html$Attributes$name = $elm$html$Html$Attributes$stringProperty('name');
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 0, a: a};
 };
@@ -5541,22 +5600,205 @@ var $elm$html$Html$Events$on = F2(
 			event,
 			$elm$virtual_dom$VirtualDom$Normal(decoder));
 	});
+var $elm$json$Json$Decode$field = _Json_decodeField;
+var $elm$json$Json$Decode$at = F2(
+	function (fields, decoder) {
+		return A3($elm$core$List$foldr, $elm$json$Json$Decode$field, decoder, fields);
+	});
+var $elm$json$Json$Decode$bool = _Json_decodeBool;
+var $elm$html$Html$Events$targetChecked = A2(
+	$elm$json$Json$Decode$at,
+	_List_fromArray(
+		['target', 'checked']),
+	$elm$json$Json$Decode$bool);
+var $elm$html$Html$Events$onCheck = function (tagger) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'change',
+		A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetChecked));
+};
 var $elm$html$Html$Events$onClick = function (msg) {
 	return A2(
 		$elm$html$Html$Events$on,
 		'click',
 		$elm$json$Json$Decode$succeed(msg));
 };
+var $author$project$Main$showArc = function (a) {
+	switch (a) {
+		case 0:
+			return 'Bullseye';
+		case 1:
+			return 'Front';
+		case 2:
+			return 'Side';
+		default:
+			return 'Rear';
+	}
+};
+var $author$project$Main$showAttack = function (a) {
+	switch (a) {
+		case 0:
+			return 'Hit';
+		case 1:
+			return 'Crit';
+		case 2:
+			return 'Focus';
+		default:
+			return 'Blank';
+	}
+};
+var $author$project$Main$showDefense = function (d) {
+	switch (d) {
+		case 0:
+			return 'Evade';
+		case 1:
+			return 'Focus';
+		default:
+			return 'Blank';
+	}
+};
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
 var $author$project$Main$view = function (m) {
 	return A2(
 		$elm$html$Html$div,
 		_List_Nil,
 		_List_fromArray(
 			[
-				$elm$html$Html$text('hello world'),
+				$elm$html$Html$text('Approach Helper for x-wing solo rules'),
 				A2($elm$html$Html$br, _List_Nil, _List_Nil),
+				A2(
+				$elm$html$Html$div,
+				_List_Nil,
+				A2(
+					$elm$core$List$cons,
+					$elm$html$Html$text('Tally arc:'),
+					A2(
+						$elm$core$List$map,
+						function (a) {
+							return A2(
+								$elm$html$Html$label,
+								_List_Nil,
+								_List_fromArray(
+									[
+										A2(
+										$elm$html$Html$input,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$type_('radio'),
+												$elm$html$Html$Attributes$name('tally-arc'),
+												$elm$html$Html$Attributes$checked(
+												A2($author$project$Main$maybeEquals, a, m.F)),
+												$elm$html$Html$Events$onCheck(
+												$elm$core$Basics$always(
+													$author$project$Main$Arc(a)))
+											]),
+										_List_Nil),
+										$elm$html$Html$text(
+										$author$project$Main$showArc(a))
+									]));
+						},
+						_List_fromArray(
+							[0, 1, 2, 3])))),
+				A2(
+				$elm$html$Html$div,
+				_List_Nil,
+				A2(
+					$elm$core$List$cons,
+					$elm$html$Html$text('Defense die:'),
+					A2(
+						$elm$core$List$map,
+						function (d) {
+							return A2(
+								$elm$html$Html$label,
+								_List_Nil,
+								_List_fromArray(
+									[
+										A2(
+										$elm$html$Html$input,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$type_('radio'),
+												$elm$html$Html$Attributes$name('defense-die'),
+												$elm$html$Html$Attributes$checked(
+												A2($author$project$Main$maybeEquals, d, m.z)),
+												$elm$html$Html$Events$onCheck(
+												$elm$core$Basics$always(
+													$author$project$Main$Defense(d)))
+											]),
+										_List_Nil),
+										$elm$html$Html$text(
+										$author$project$Main$showDefense(d))
+									]));
+						},
+						_List_fromArray(
+							[0, 1, 2])))),
+				A2(
+				$elm$html$Html$div,
+				_List_Nil,
+				A2(
+					$elm$core$List$cons,
+					$elm$html$Html$text('Attack die:'),
+					A2(
+						$elm$core$List$map,
+						function (a) {
+							return A2(
+								$elm$html$Html$label,
+								_List_Nil,
+								_List_fromArray(
+									[
+										A2(
+										$elm$html$Html$input,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$type_('radio'),
+												$elm$html$Html$Attributes$name('attack-die'),
+												$elm$html$Html$Attributes$checked(
+												A2($author$project$Main$maybeEquals, a, m.G)),
+												$elm$html$Html$Events$onCheck(
+												$elm$core$Basics$always(
+													$author$project$Main$Attack(a)))
+											]),
+										_List_Nil),
+										$elm$html$Html$text(
+										$author$project$Main$showAttack(a))
+									]));
+						},
+						_List_fromArray(
+							[0, 1, 2, 3])))),
+				A2(
+				$elm$core$Maybe$withDefault,
+				A2($elm$html$Html$div, _List_Nil, _List_Nil),
+				A2(
+					$elm$core$Maybe$map,
+					function (a) {
+						return A2(
+							$elm$html$Html$div,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Approach: The solo ship selects\u00A0'),
+									$elm$html$Html$text(a)
+								]));
+					},
+					m.H)),
+				A2(
+				$elm$core$Maybe$withDefault,
+				A2($elm$html$Html$div, _List_Nil, _List_Nil),
+				A2(
+					$elm$core$Maybe$map,
+					function (a) {
+						return A2(
+							$elm$html$Html$div,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Attitude:\u00A0'),
+									$elm$html$Html$text(a)
+								]));
+					},
+					m.I)),
 				A2(
 				$elm$html$Html$button,
 				_List_fromArray(
